@@ -9,6 +9,12 @@ import { getProductByIdSchema, newProductSchema } from "./product.schema.ts";
 
 const router = new Router();
 
+/** temporary main route */
+router.get("/", (ctx) => {
+  ctx.response.body = { message: "Server is running!" };
+  return;
+});
+
 router.get("/products", getAllProductHandler);
 router.post(
   "/products",

@@ -18,11 +18,6 @@ try {
   await db.connect();
   console.log("Database Connected...");
 
-  app.use((ctx) => {
-    ctx.response.body = { message: "Server is running!" };
-    return;
-  });
-
   app.use(productRoutes.routes());
   app.use(productRoutes.allowedMethods());
 
