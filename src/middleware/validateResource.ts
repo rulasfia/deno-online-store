@@ -13,7 +13,7 @@ export function validateResource(schema: AnyZodObject) {
 
       return next();
     } catch (error) {
-      errorResponse(ctx, 400, error);
+      errorResponse(ctx, { status: 400, error });
       return;
     }
   };

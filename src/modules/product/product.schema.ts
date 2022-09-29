@@ -26,7 +26,14 @@ export const updateProductSchema = z.object({
   }),
 });
 
+export const deleteProductSchema = z.object({
+  params: z.object({
+    id: z.string(),
+  }),
+});
+
 /** Typescript defs */
 export type NewProductInput = z.infer<typeof newProductSchema>;
 export type GetProductByIdInput = z.infer<typeof getProductByIdSchema>;
 export type UpdateProductInput = z.infer<typeof updateProductSchema>;
+export type DeleteProductInput = z.infer<typeof deleteProductSchema>;
