@@ -1,5 +1,5 @@
 import { Client } from "postgres/mod.ts";
-import env from "./environment.ts";
+import * as env from "./environment.ts";
 
 const db = new Client({
   hostname: env.DB_HOST,

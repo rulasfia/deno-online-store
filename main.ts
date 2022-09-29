@@ -1,4 +1,4 @@
-import { Application } from "oak/mod.ts";
+import { Application, Router } from "oak/mod.ts";
 import { logger } from "~/middleware/logger.ts";
 import { resTimeRecorder } from "~/middleware/resTimeRecorder.ts";
 import db from "~/utils/database.ts";
@@ -7,6 +7,7 @@ import db from "~/utils/database.ts";
 import productRoutes from "~/modules/product/product.router.ts";
 
 const app = new Application();
+const router = new Router();
 
 /** logger */
 app.use(logger);
@@ -17,6 +18,11 @@ try {
   /** connect to database */
   await db.connect();
   console.log("Database Connected...");
+
+  router.get("/", (ctx) => {
+    ctx.response.body = { message: "Server is running!" };
+    return;
+  });
 
   app.use(productRoutes.routes());
   app.use(productRoutes.allowedMethods());

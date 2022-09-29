@@ -33,3 +33,19 @@ export async function getProductById(id: string) {
     `SELECT * FROM product WHERE id = '${id}'`
   );
 }
+
+export async function updateProduct(
+  id: string,
+  product: Partial<NewProductType>
+) {
+  const transaction = db.createTransaction("update_product");
+
+  await transaction.begin();
+
+  const result =
+    await transaction.queryObject<ProductResult>`UPDATE product SET name = ${product.name}, description = ${product.description}, price = ${product.price} WHERE id = ${id} RETURNING *;`;
+
+  await transaction.commit();
+
+  return result;
+}

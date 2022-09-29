@@ -10,12 +10,3 @@ export const {
   DB_PORT = 5432,
   DB_OPTIONS = "",
 } = Deno.env.toObject();
-
-export default {
-  DB_HOST,
-  DB_PASSWORD,
-  DB_USER,
-  DB_NAME,
-  DB_PORT,
-  DB_OPTIONS,
-};

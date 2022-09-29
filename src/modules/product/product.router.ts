@@ -4,16 +4,15 @@ import {
   createProductHandler,
   getAllProductHandler,
   getProductByIdHandler,
+  updateProductHandler,
 } from "./product.controller.ts";
-import { getProductByIdSchema, newProductSchema } from "./product.schema.ts";
+import {
+  getProductByIdSchema,
+  newProductSchema,
+  updateProductSchema,
+} from "./product.schema.ts";
 
 const router = new Router();
-
-/** temporary main route */
-router.get("/", (ctx) => {
-  ctx.response.body = { message: "Server is running!" };
-  return;
-});
 
 router.get("/products", getAllProductHandler);
 router.post(
@@ -25,6 +24,11 @@ router.get(
   "/products/:id",
   validateResource(getProductByIdSchema),
   getProductByIdHandler
+);
+router.put(
+  "/products/:id",
+  validateResource(updateProductSchema),
+  updateProductHandler
 );
 
 export default router;
